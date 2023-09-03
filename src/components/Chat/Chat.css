@@ -1,0 +1,116 @@
+.Chat {
+  width: 99.9%;
+  height: 78vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 13px;
+}
+.Title {
+  width: 100%;
+  text-align: center;
+}
+.Messages {
+  box-sizing: border-box;
+  min-height: 100%;
+  width: 95%;
+  padding-bottom: 90px;
+}
+.SendMessage {
+  height: 80px;
+  margin-top: -80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.YourMessages {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  width: auto;
+}
+.YourMessages > button {
+  display: inline;
+}
+
+.OtherMessages {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+span {
+  font-size: 9px;
+  display: block;
+  color: lightgray;
+}
+
+.text {
+  margin: 0px 0px 0px 0px;
+}
+.Messages {
+  overflow-y: scroll;
+}
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h3 {
+  margin: 0px;
+}
+.asd {
+  color: white;
+  padding: 5px;
+  background: blue;
+  margin-top: 10px;
+  border-radius: 10px 10px 10px 0px;
+}
+.UserNameAndDelete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.asdf {
+  position: absolute;
+  color: black;
+  bottom: 40%;
+}
+.asdff {
+  position: absolute;
+  color: black;
+  bottom: 35%;
+}
+.sendAudioMessage:hover {
+  cursor: pointer;
+}
+.sendAudioMessage {
+  position: absolute;
+  background: none;
+  border: 0px;
+  bottom: 7.6%;
+  right: 28%;
+}
+.Recording {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  background-color: white;
+  bottom: 7%;
+  left: 32%;
+  width: 32%;
+}
+.Emoji {
+  margin-top: 27px;
+}
+.MovedEmoji {
+  position: absolute;
+  left: 10%;
+  bottom: 1%;
+}
