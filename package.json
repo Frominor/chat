@@ -1,8 +1,0 @@
-{
-  "name": "my-chat",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "deploy": "cd client && npm run build"
-  }
-}
