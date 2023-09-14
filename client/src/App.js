@@ -1,6 +1,7 @@
 import "./App.css";
-import { Navigate, Route, Router, Routes } from "react-router-dom";
-import Chat from "./components/Chat/Chat";
+import { Route, Routes } from "react-router-dom";
+import { Suspense } from "react";
+import { Spin } from "antd";
 import Main from "./components/Main/Main";
 import React from "react";
 import Register from "./components/Register/Register";
@@ -30,14 +31,46 @@ function App() {
     <div className="App">
       <Main></Main>
       <Routes>
-        <Route path="/register" element={<Register></Register>}></Route>
-        <Route path="/login" element={<SignIn></SignIn>}></Route>
+        <Route
+          path="/register"
+          element={
+            <Suspense fallback={<p>Loading...</p>}>
+              <Register></Register>
+            </Suspense>
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<p>Loading...</p>}>
+              <SignIn></SignIn>
+            </Suspense>
+          }
+        ></Route>
         <Route
           path="/profile/edit"
-          element={<EditProfile></EditProfile>}
+          element={
+            <Suspense fallback={<p>Loading...</p>}>
+              <EditProfile></EditProfile>
+            </Suspense>
+          }
         ></Route>
-        <Route path="/form" element={<Form></Form>}></Route>
-        <Route path="/profile" element={<Profile></Profile>}></Route>
+        <Route
+          path="/form"
+          element={
+            <Suspense fallback={<p>Loading</p>}>
+              <Form></Form>
+            </Suspense>
+          }
+        ></Route>
+        <Route
+          path="/profile"
+          element={
+            <Suspense fallback={<Spin></Spin>}>
+              <Profile></Profile>
+            </Suspense>
+          }
+        ></Route>
       </Routes>
     </div>
   );
