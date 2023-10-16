@@ -33,7 +33,6 @@ fileRouter.post("/:user", async (req, res) => {
     }
     const newFile = encodeURI(Date.now() + "-" + file.name);
     const uploadPath = path.join(__dirname, "..", "images", newFile);
-    console.log(uploadPath);
     await fs.promises.writeFile(uploadPath, file.data, "binary");
     file.mv(uploadPath, async (err) => {
       if (err) {

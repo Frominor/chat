@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const MessageSchema = new mongoose.Schema(
   {
     message: {
-      type: String,
-      require: true,
+      type: String || Object,
     },
     date: {
       type: String,
@@ -16,6 +15,12 @@ const MessageSchema = new mongoose.Schema(
     },
     userInfo: {
       type: Object,
+    },
+    Images: {
+      type: Object,
+    },
+    AudioMessage: {
+      type: Object || String,
     },
   },
 

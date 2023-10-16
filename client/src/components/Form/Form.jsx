@@ -29,7 +29,6 @@ export default function Form() {
     if (token) {
       window.localStorage.setItem("token", token);
     }
-    console.log(UserInfo);
     SetuserName(UserInfo?.fullName);
   }, []);
   const onLogin = async (roomId, userName) => {

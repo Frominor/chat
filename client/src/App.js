@@ -16,16 +16,17 @@ import EditProfile from "./components/EditProfile/EditProfile";
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    async function Async() {
+    async function AsyncGetUserInfo() {
       const { data } = await axios.get(
         `http://localhost:5000/auth/getMe/${localStorage.getItem("token")}`
       );
+
       if (data.ErrorMessage) {
         dispatch(ReloadPageReducer({ token: null, user: null }));
       }
       dispatch(ReloadPageReducer(data));
     }
-    Async();
+    AsyncGetUserInfo();
   }, []);
   return (
     <div className="App">

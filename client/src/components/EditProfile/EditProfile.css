@@ -14,6 +14,8 @@
   justify-content: space-evenly;
 }
 .Avatar {
+  transform: scaleX(1.15);
+  transform: scaleY(1.25);
   border-radius: 5px;
   background: #ffffff;
   display: flex;
@@ -94,10 +96,37 @@ li {
 .ChangeAvatar:hover {
   cursor: pointer;
 }
+
+.Avatar:hover.EditProfileSvgBox {
+  opacity: 1;
+  cursor: pointer;
+}
 .FullName {
   font-weight: 800;
   font-size: 15px;
   margin-top: 0px;
   margin-bottom: 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.EditProfileSvg {
+  border-radius: 150px;
+  background: none;
+}
+.EditProfileSvgBox {
+  position: absolute;
+  width: 245px;
+  top: 21%;
+  left: 25.5%;
+  height: 305px;
+  transform: scale(0.96);
+  border-radius: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(128, 128, 128, 0.8);
+  opacity: 0;
+}
+.EditProfileSvgBox:hover {
+  opacity: 0.5;
 }

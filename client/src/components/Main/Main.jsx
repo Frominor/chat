@@ -27,7 +27,6 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  console.log(State);
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -41,21 +40,7 @@ function ResponsiveAppBar() {
       alert("Войдите в аккаунт или зарегистрируйтесь");
     }
   };
-  const sequenceSum = (begin, end, step) => {
-    let sum = begin;
-    if (begin == end) {
-      return end;
-    } else if (begin > end) {
-      return 0;
-    }
-    while (sum <= end) {
-      sum += step;
-      if (sum > end) {
-        return (sum -= step);
-      }
-    }
-  };
-  console.log(sequenceSum(2, 6, 2));
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">

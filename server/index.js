@@ -13,13 +13,13 @@ import MessageSchema from "./Schema/MessageSchema.js";
 import RoomSchema from "./Schema/RoomSchema.js";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 const protocol = http;
 const server = protocol.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: true,
-    credentials: true,
+    origin: "*",
   },
   allowEIO3: true,
 });
@@ -30,7 +30,6 @@ app.use(
 );
 
 app.use("/images", express.static("images"));
-app.use(cors());
 io.on("connection", (socket) => {
   socket.on("ROOM:JOIN", async ({ roomId, userName }) => {
     socket.join(roomId);
@@ -43,43 +42,42 @@ io.on("connection", (socket) => {
     socket.to(roomId).emit("ROOM:JOINED", messages);
   });
   socket.on("disconnect", () => {
-    rooms.forEach((value, roomId) => {
-      if (value.get("users").delete(socket.id)) {
-        const users = [...rooms.get(roomId).get("users").values()];
-        socket.broadcast.to(roomId).emit("ROOM:LEAVE", users);
-      }
-    });
+    // const rooms=
+    // rooms.forEach((value, roomId) => {
+    //   if (value.get("users").delete(socket.id)) {
+    //     const users = [...rooms.get(roomId).get("users").values()];
+    //     socket.broadcast.to(roomId).emit("ROOM:LEAVE", users);
+    //   }
+    // });
   });
   socket.on(
     "ROOM:NEW_MESSAGE",
-    async ({ roomId, userName, text, date, UserId, audioMessage }) => {
-      if (text) {
-        const user = await UserSchema.findById(UserId);
-        console.log(user._doc);
-        const room = await RoomSchema.findOne({ roomId });
-        const message = new MessageSchema({
-          message: text,
-          user: user._doc,
-          userInfo: user._doc,
-          date: date,
-        });
-        await message.save();
-        room.messages.push(message);
-        await RoomSchema.findOneAndUpdate(
-          { roomId },
-          { messages: room.messages }
-        );
-        socket.broadcast.to(roomId).emit("ROOM:NEW_MESSAGE", message);
-      } else {
-        const obj = {
-          userName,
-          audioMessage,
-          date,
-          UserId,
-        };
-        rooms.get(roomId)?.get("messages").push(obj);
-        socket.broadcast.to(roomId).emit("ROOM:NEW_MESSAGE", obj);
-      }
+    async ({
+      roomId,
+      text,
+      date,
+      UserId,
+      Images = [],
+      AudioMessage = null,
+    }) => {
+      const user = await UserSchema.findById(UserId);
+
+      const room = await RoomSchema.findOne({ roomId });
+      const message = new MessageSchema({
+        message: text,
+        user: user._doc,
+        userInfo: user._doc,
+        Images: Images,
+        date: date,
+        AudioMessage,
+      });
+      await message.save();
+      room.messages.push(message);
+      await RoomSchema.findOneAndUpdate(
+        { roomId },
+        { messages: room.messages }
+      );
+      socket.broadcast.to(roomId).emit("ROOM:NEW_MESSAGE", message);
     }
   );
   socket.on("ROOM:DELETE_MESSAGE", async (obj) => {
@@ -95,7 +93,6 @@ io.on("connection", (socket) => {
     socket.broadcast.to(obj.roomId).emit("ROOM:DELETE_MESSAGE", newmessages);
   });
 });
-const rooms = new Map();
 app.get("/rooms/:id", async (req, res) => {
   const room = await RoomSchema.findOne({ roomId: req.params.id });
   if (room) {

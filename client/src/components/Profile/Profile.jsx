@@ -1,6 +1,6 @@
 import React from "react";
 import "./Profile.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Avatar, Button } from "@mui/material";
 import { Link, Navigate } from "react-router-dom";
 
@@ -67,7 +67,7 @@ export default function Profile() {
           </div>
         </div>
         <div className="Edit">
-          <Link to={"/profile/edit"}>
+          <Link to={"/profile/edit"} style={{ textDecoration: "none" }}>
             <Button
               sx={{
                 my: 2,

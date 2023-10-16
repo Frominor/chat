@@ -15,6 +15,7 @@ export default (state, action) => {
     case "DELETED_MESSAGE":
       return { ...state, messages: [...action.payload] };
     case "NEW_MESSAGE":
+      console.log(...action.payload);
       return { ...state, messages: [...state.messages, ...action.payload] };
     case "CONNECTION":
       return { ...state, messages: action.payload };
