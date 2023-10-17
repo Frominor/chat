@@ -1,7 +1,9 @@
 import React from "react";
+import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
 import PopUp from "../PopUp/PopUp";
+import axios from "axios";
 import "./Message.css";
 export default function Message({
   messages,
@@ -14,7 +16,6 @@ export default function Message({
   const [PopUpActive, SetPopUpActive] = React.useState(false);
   const [ScaledImgSrc, SetScaledImgSrc] = React.useState(null);
   const State = useSelector((state) => state.user);
-
   const del = ({ text, userName, date }) => {
     const obj = {
       text,
@@ -47,7 +48,7 @@ export default function Message({
     <div
       className="Messages"
       style={
-        messages.length > 3 ? { overflowY: "scroll" } : { overflowY: "hidden" }
+        messages.length > 5 ? { overflowY: "scroll" } : { overflowY: "hidden" }
       }
     >
       {PopUpActive && (
@@ -63,8 +64,8 @@ export default function Message({
           <div
             className={
               message.userInfo.email === State.UserInfo.email
-                ? "YourMessages"
-                : "OtherMessages"
+                ? "YourMessage"
+                : "OtherMessage"
             }
           >
             <div className="avatar">
@@ -85,8 +86,8 @@ export default function Message({
               />
             </div>
             <div className={"MessageBox"}>
-              <p className="text" style={{ color: "black" }}>
-                {message.message !== "" && message.message}
+              <p className="text" style={{ color: "white" }}>
+                {message.message}
               </p>
               <div className="ImgMessageBox">
                 {message.Images?.map((item) => {
@@ -102,7 +103,6 @@ export default function Message({
                     ></img>
                   );
                 })}
-
                 {message.AudioMessage && (
                   <audio src={message.AudioMessage} controls></audio>
                 )}
@@ -110,27 +110,38 @@ export default function Message({
               <div className="UserNameAndDelete/Edit">
                 <span>{message.userInfo.fullName}</span>
                 {message.userInfo.email === State.UserInfo.email ? (
-                  <button className="del" onClick={() => del(message)}>
+                  <Button
+                    sx={{ marginRight: 6 + "px", padding: 5 + "px" }}
+                    variant="contained"
+                    className="del"
+                    onClick={() => del(message)}
+                  >
                     Удалить
-                  </button>
+                  </Button>
                 ) : (
                   ""
                 )}
 
                 {message.userInfo.email === State.UserInfo.email ? (
                   !message.isEdit ? (
-                    <button
+                    <Button
+                      sx={{ marginRight: 6 + "px", padding: 5 + "px" }}
+                      variant="contained"
                       onClick={() => {
                         message.isEdit = true;
                         SetValue(message.message);
                       }}
                     >
                       Редактировать
-                    </button>
+                    </Button>
                   ) : (
-                    <button onClick={() => SaveMessage(message)}>
+                    <Button
+                      sx={{ marginRight: 6 + "px", padding: 5 + "px" }}
+                      variant="contained"
+                      onClick={() => SaveMessage(message)}
+                    >
                       Сохранить
-                    </button>
+                    </Button>
                   )
                 ) : (
                   ""

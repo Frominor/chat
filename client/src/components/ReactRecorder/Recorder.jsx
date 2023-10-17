@@ -1,7 +1,14 @@
 import React from "react";
 import { ReactMic } from "react-mic";
-export default function Recorder({ AudioMessage, SetAudioMessage }) {
-  const [Voice, SetVoice] = React.useState(false);
+import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import ClearIcon from "@mui/icons-material/Clear";
+import "./Recorder.css";
+export default function Recorder({
+  AudioMessage,
+  SetAudioMessage,
+  Voice,
+  SetVoice,
+}) {
   const OnStop = (blob) => {
     SetAudioMessage(blob.blobURL);
   };
@@ -11,20 +18,36 @@ export default function Recorder({ AudioMessage, SetAudioMessage }) {
   const StopHandle = () => {
     SetVoice(false);
   };
-  const ClearHandle = () => {
-    SetAudioMessage("");
-    SetVoice(false);
-  };
   return (
     <div className="Recorder">
       <ReactMic className="React-mic" record={Voice} onStop={OnStop}></ReactMic>
-      {AudioMessage ? <button onClick={ClearHandle}>Очистить</button> : ""}
       {!Voice ? (
-        <button onClick={StartHandle}>Старт</button>
+        <KeyboardVoiceIcon
+          sx={{
+            marginTop: 28 + "px",
+            marginLeft: 2 + "px",
+            ":hover": { cursor: "pointer" },
+          }}
+          onClick={StartHandle}
+        >
+          Старт
+        </KeyboardVoiceIcon>
       ) : (
-        <button onClick={StopHandle}>Стоп</button>
+        <ClearIcon
+          onClick={StopHandle}
+          sx={{
+            marginTop: 28 + "px",
+            padding: 2 + "px",
+            color: "red",
+            ":hover": { cursor: "pointer" },
+          }}
+        >
+          Стоп
+        </ClearIcon>
       )}
-      {AudioMessage ? <audio controls src={AudioMessage}></audio> : null}
+      {AudioMessage ? (
+        <audio className="DemoAudio" controls src={AudioMessage}></audio>
+      ) : null}
     </div>
   );
 }

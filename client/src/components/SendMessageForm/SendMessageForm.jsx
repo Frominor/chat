@@ -3,9 +3,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import Picker from "emoji-picker-react";
 import "./SendMessageForm.css";
 import Recorder from "../ReactRecorder/Recorder";
@@ -15,11 +13,11 @@ export default function SendMessageForm({
   roomId,
   ImageUrl,
   socket,
-
   SetImgUrl,
 }) {
   const Ref = React.useRef(null);
   const [Key, SetKey] = React.useState("");
+  const [Voice, SetVoice] = React.useState(false);
   const State = useSelector((state) => state.user);
   const [AudioMessage, SetAudioMessage] = React.useState(null);
   const [EmojiStyle, SetEmojiStyle] = React.useState(false);
@@ -33,6 +31,12 @@ export default function SendMessageForm({
   };
   const onkey = (event) => {
     SetKey(event.key);
+  };
+  const ClearStates = () => {
+    SetValue("");
+    SetImgUrl([]);
+    SetVoice(false);
+    SetAudioMessage(null);
   };
   React.useEffect(() => {
     Ref.current.addEventListener("keydown", onkey);
@@ -56,10 +60,8 @@ export default function SendMessageForm({
       UserId,
       date: new Date(),
     };
-    console.log(obj);
     await socket.emit("ROOM:NEW_MESSAGE", obj);
-    SetValue("");
-    SetImgUrl([]);
+    ClearStates();
   };
   return (
     <div className="SendMessage">
@@ -137,6 +139,8 @@ export default function SendMessageForm({
         <AddAPhotoIcon style={{ marginTop: 28 + "px" }}></AddAPhotoIcon>
       </label>
       <Recorder
+        Voice={Voice}
+        SetVoice={SetVoice}
         AudioMessage={AudioMessage}
         SetAudioMessage={SetAudioMessage}
       ></Recorder>

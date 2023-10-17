@@ -1,24 +1,36 @@
 .Messages {
   box-sizing: border-box;
   min-height: 100%;
-  width: 95%;
+  width: 100%;
   padding-bottom: 90px;
+  overflow-y: scroll;
 }
-.YourMessages {
-  padding: 10px;
+.YourMessage {
+  padding: 5px;
   display: flex;
   align-items: center;
-
-  width: auto;
+  position: relative;
+  margin-left: 65px;
+  background-color: blue;
+  margin-bottom: 20px;
+  width: fit-content;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  color: white;
 }
-.YourMessages > button {
-  display: inline;
-}
 
-.OtherMessages {
-  padding: 10px;
+.OtherMessage {
+  position: relative;
+  padding: 5px;
   display: flex;
+  margin-right: 65px;
   justify-content: flex-end;
+  background-color: blue;
+  margin-bottom: 20px;
+  width: fit-content;
+  border-radius: 20px;
+  border-bottom-right-radius: 0px;
+  color: white;
 }
 
 span {
@@ -30,10 +42,9 @@ span {
 .text {
   margin: 0px 0px 0px 0px;
 }
-.Messages {
-  overflow-y: scroll;
-}
 .avatar {
+  position: absolute;
+  left: -23%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,9 +53,7 @@ h3 {
   margin: 0px;
 }
 .MessageBox {
-  color: black;
   padding: 5px;
-  margin-top: 20px;
   border-radius: 10px 10px 10px 0px;
 }
 
@@ -53,14 +62,10 @@ h3 {
   align-items: center;
   justify-content: space-between;
 }
-.asdf {
-  position: absolute;
-  color: black;
-  bottom: 40%;
-}
+
 .asdff {
   position: absolute;
-  color: black;
+
   bottom: 35%;
 }
 .sendAudioMessage:hover {
@@ -92,18 +97,6 @@ h3 {
   left: 10%;
   bottom: 1%;
 }
-.MessageForSend {
-  margin-left: 31.5%;
-  width: 60%;
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.SendingImage:hover {
-  transition: 5ms ease-in-out;
-  transform: scale(1.4);
-}
 
 label:hover {
   cursor: pointer;
@@ -118,10 +111,14 @@ label:hover {
   opacity: 0;
   transition: opacity 0.22s;
 }
-.SendingMessage:hover .delImg {
-  opacity: 1;
-}
+
 .ImgMessageBox {
   display: flex;
   justify-content: space-between;
+}
+.singledImg {
+  background: none;
+}
+.singledImg > img {
+  width: 200px;
 }
