@@ -8,7 +8,6 @@ import {
   Grid,
   TextField,
   ThemeProvider,
-  colors,
   createTheme,
 } from "@mui/material";
 import { Link, Navigate } from "react-router-dom";
@@ -20,11 +19,12 @@ import {
   Controller,
   useFieldArray,
 } from "react-hook-form";
+import ProfileAvatar from "../Avatar/Avatar";
 
 const theme = createTheme();
 export default function EditProfile() {
   const State = useSelector((state) => state.user);
-  console.log(State);
+
   const [NavigateTo, SetNavigateTo] = React.useState(false);
   const { handleSubmit, control, setValue } = useForm({
     defaultValues: {
@@ -69,7 +69,6 @@ export default function EditProfile() {
       SetNavigateTo(true);
     } else {
       obj.user[0].id = State.UserInfo._id;
-      console.log(obj);
       const { data } = await axios.post(
         `http://localhost:5000/file/${JSON.stringify(...obj.user)}`
       );
@@ -81,33 +80,7 @@ export default function EditProfile() {
     <ThemeProvider theme={theme}>
       <form className="Profile" onSubmit={handleSubmit(onSubmit)}>
         <div className="LeftSide">
-          <div className="Avatar">
-            <Avatar
-              sx={
-                State.UserInfo
-                  ? {
-                      width: 250,
-                      height: 250,
-                      marginBottom: 20 + "px",
-                      marginTop: 20 + "px",
-                    }
-                  : {}
-              }
-              src={
-                State.UserInfo?.avatarUrl
-                  ? State.UserInfo.avatarUrl
-                  : "/static/images/avatar/2.jpg"
-              }
-            />
-            <p
-              className="FullName"
-              style={{ color: "#6c75a7", fontWeight: 800, fontSize: 15 + "px" }}
-            >
-              {State.UserInfo?.fullName}
-            </p>
-            <p>{"Frontend-developer"}</p>
-            <p>{"Тут могла быть ваша реклама :)"}</p>
-          </div>
+          <ProfileAvatar></ProfileAvatar>
           <div className="Links">
             <ul>
               {Links.map((link) => {
@@ -142,11 +115,14 @@ export default function EditProfile() {
                           name={fieldName}
                           control={control}
                           key={item.id}
+                          rules={{ maxLength: 30 }}
                           render={({ field, fieldState }) => (
                             <TextField
                               sx={{ padding: 5 + "px", marginTop: 18 + "px" }}
                               label={"Введите новое ФИО"}
                               {...field}
+                              error={!!errors.fieldName?.message}
+                              helperText={errors.fieldName?.message}
                               fullWidth
                               id="standard-basic"
                               variant="standard"
@@ -157,6 +133,7 @@ export default function EditProfile() {
                           control={control}
                           name={email}
                           key={item.id}
+                          rules={{ maxLength: 20 }}
                           render={({ field, fieldState }) => (
                             <TextField
                               sx={{ padding: 5 + "px", marginTop: 7 + "px" }}

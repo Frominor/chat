@@ -9,25 +9,27 @@
   padding: 5px;
   display: flex;
   align-items: center;
-  position: relative;
   margin-left: 65px;
-  background-color: blue;
+
   margin-bottom: 20px;
-  width: fit-content;
+  margin-top: 10px;
+  width: 90%;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
   color: white;
 }
 
 .OtherMessage {
-  position: relative;
   padding: 5px;
   display: flex;
+  width: 90%;
+  float: right;
+  margin-top: 60px;
   margin-right: 65px;
   justify-content: flex-end;
-  background-color: blue;
+
   margin-bottom: 20px;
-  width: fit-content;
+
   border-radius: 20px;
   border-bottom-right-radius: 0px;
   color: white;
@@ -42,9 +44,16 @@ span {
 .text {
   margin: 0px 0px 0px 0px;
 }
-.avatar {
+.YourAvatar {
   position: absolute;
-  left: -23%;
+  left: 0.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.OtherAvatar {
+  position: absolute;
+  right: 0.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,10 +62,14 @@ h3 {
   margin: 0px;
 }
 .MessageBox {
+  position: relative;
+  background-color: blue;
   padding: 5px;
-  border-radius: 10px 10px 10px 0px;
+  border-radius: 20px 20px 20px 0px;
 }
-
+.OtherMessage > .MessageBox {
+  border-radius: 20px 20px 0px 20px;
+}
 .UserNameAndDelete {
   display: flex;
   align-items: center;
@@ -115,10 +128,4 @@ label:hover {
 .ImgMessageBox {
   display: flex;
   justify-content: space-between;
-}
-.singledImg {
-  background: none;
-}
-.singledImg > img {
-  width: 200px;
 }

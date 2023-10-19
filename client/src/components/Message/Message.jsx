@@ -12,6 +12,7 @@ export default function Message({
   dispatch,
   SetValue,
   Value,
+  SetEditedMessage,
 }) {
   const [PopUpActive, SetPopUpActive] = React.useState(false);
   const [ScaledImgSrc, SetScaledImgSrc] = React.useState(null);
@@ -68,7 +69,13 @@ export default function Message({
                 : "OtherMessage"
             }
           >
-            <div className="avatar">
+            <div
+              className={
+                message.userInfo.email === State.UserInfo.email
+                  ? "YourAvatar"
+                  : "OtherAvatar"
+              }
+            >
               <Avatar
                 sx={
                   State.UserInfo
@@ -85,7 +92,7 @@ export default function Message({
                 }
               />
             </div>
-            <div className={"MessageBox"}>
+            <div className="MessageBox">
               <p className="text" style={{ color: "white" }}>
                 {message.message}
               </p>
@@ -96,7 +103,8 @@ export default function Message({
                       onClick={() => OpenPopUp(item.src)}
                       src={item.src}
                       style={{
-                        width: 50 + "%",
+                        width: 100 + "%",
+                        borderRadius: 10 + "px",
                         height: 70 + "px",
                         cursor: "pointer",
                       }}
@@ -123,25 +131,27 @@ export default function Message({
                 )}
 
                 {message.userInfo.email === State.UserInfo.email ? (
-                  !message.isEdit ? (
+                  message.Images.length == 0 ? (
                     <Button
                       sx={{ marginRight: 6 + "px", padding: 5 + "px" }}
                       variant="contained"
                       onClick={() => {
-                        message.isEdit = true;
-                        SetValue(message.message);
+                        if (message.isEdit) {
+                          SaveMessage(message);
+                        } else {
+                          messages.forEach((item) => {
+                            item.isEdit = false;
+                          });
+                          message.isEdit = true;
+                          SetValue(message.message);
+                          SetEditedMessage(message);
+                        }
                       }}
                     >
-                      Редактировать
+                      {message.isEdit ? "Сохранить" : "Редактировать"}
                     </Button>
                   ) : (
-                    <Button
-                      sx={{ marginRight: 6 + "px", padding: 5 + "px" }}
-                      variant="contained"
-                      onClick={() => SaveMessage(message)}
-                    >
-                      Сохранить
-                    </Button>
+                    ""
                   )
                 ) : (
                   ""

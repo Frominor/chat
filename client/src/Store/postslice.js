@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   UserInfo: null,
   token: null,
+  ShowPicker: false,
 };
 export const AsyncUserRegisterThunk = createAsyncThunk(
   "user/Register",
@@ -39,6 +40,9 @@ const UserSlice = createSlice({
     ChangeUserInfo: (state, action) => {
       state.UserInfo = action.payload;
     },
+    HandleEmojiPicker: (state, action) => {
+      state.ShowPicker = action.payload;
+    },
   },
   extraReducers: {
     [AsyncUserRegisterThunk.fulfilled]: (state, action) => {
@@ -51,6 +55,10 @@ const UserSlice = createSlice({
     },
   },
 });
-export const { SignOutReducer, ReloadPageReducer, ChangeUserInfo } =
-  UserSlice.actions;
+export const {
+  SignOutReducer,
+  ReloadPageReducer,
+  ChangeUserInfo,
+  HandleEmojiPicker,
+} = UserSlice.actions;
 export const UserReducer = UserSlice.reducer;

@@ -8,7 +8,6 @@ import Chat from "../Chat/Chat";
 import reducer from "../../reducer";
 import { Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 export default function Form() {
   const { register, handleSubmit, control } = useForm({ mode: "onSubmit" });
   const { errors } = useFormState({
@@ -57,7 +56,6 @@ export default function Form() {
   };
   React.useEffect(() => {
     socket.on("ROOM:JOINED", (messages) => {
-      console.log(messages);
       dispatch({
         type: "CONNECTION",
         payload: messages,
@@ -70,7 +68,6 @@ export default function Form() {
       });
     });
     socket.on("ROOM:NEW_MESSAGE", (obj) => {
-      console.log(obj);
       dispatch({
         type: "NEW_MESSAGE",
         payload: [obj],
