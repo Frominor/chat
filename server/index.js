@@ -8,9 +8,9 @@ import fileUpload from "express-fileupload";
 import { authRouter } from "./routers/auth.js";
 import { fileRouter } from "./routers/file.js";
 import { RoomRouter } from "./routers/chatrooms.js";
-import UserSchema from "./Schema/UserSchema.js";
-import MessageSchema from "./Schema/MessageSchema.js";
-import RoomSchema from "./Schema/RoomSchema.js";
+import UserSchema from "./schema/userschema.js";
+import MessageSchema from "./schema/messageschema.js";
+import RoomSchema from "./schema/roomschema.js";
 
 const app = express();
 app.use(cors());

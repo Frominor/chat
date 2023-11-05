@@ -1,7 +1,7 @@
 import { Router } from "express";
 import path from "node:path";
 import { fs } from "file-system";
-import UserSchema from "../Schema/UserSchema.js";
+import UserSchema from "../schema/userschema.js";
 import { fileURLToPath } from "node:url";
 export const fileRouter = Router();
 const __filename = fileURLToPath(import.meta.url);

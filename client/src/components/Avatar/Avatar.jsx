@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
 export default function ProfileAvatar() {
   const State = useSelector((state) => state.user);
-  console.log(State.UserInfo.avatarUrl);
   return (
     <div className="Avatar">
       <Avatar

@@ -2,17 +2,18 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 import { Spin } from "antd";
-import Main from "./components/Main/Main";
+import Header from "./components/Header/Header";
 import React from "react";
-import Register from "./components/Register/Register";
-import Form from "./components/Form/Form";
-import SignIn from "./components/SignIn/SignIn";
-import Profile from "./components/Profile/Profile";
+import Register from "./Pages/Register/Register";
+import Form from "./Pages/Form/Form";
+import SignIn from "./Pages/SignIn/SignIn";
+import Profile from "./Pages/Profile/Profile";
 import { useDispatch, useSelector } from "react-redux";
-import { ReloadPageReducer } from "./Store/postslice";
+import { ReloadPageReducer } from "./store/postslice";
 import axios from "axios";
-import EditProfile from "./components/EditProfile/EditProfile";
-
+import EditProfile from "./Pages/EditProfile/EditProfile";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+const theme = createTheme();
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -30,49 +31,51 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Main></Main>
-      <Routes>
-        <Route
-          path="/register"
-          element={
-            <Suspense fallback={<p>Loading...</p>}>
-              <Register></Register>
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/login"
-          element={
-            <Suspense fallback={<p>Loading...</p>}>
-              <SignIn></SignIn>
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/profile/edit"
-          element={
-            <Suspense fallback={<p>Loading...</p>}>
-              <EditProfile></EditProfile>
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/form"
-          element={
-            <Suspense fallback={<p>Loading</p>}>
-              <Form></Form>
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/profile"
-          element={
-            <Suspense fallback={<Spin></Spin>}>
-              <Profile></Profile>
-            </Suspense>
-          }
-        ></Route>
-      </Routes>
+      <Header></Header>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route
+            path="/register"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <Register></Register>
+              </Suspense>
+            }
+          ></Route>
+          <Route
+            path="/login"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <SignIn></SignIn>
+              </Suspense>
+            }
+          ></Route>
+          <Route
+            path="/profile/edit"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <EditProfile></EditProfile>
+              </Suspense>
+            }
+          ></Route>
+          <Route
+            path="/form"
+            element={
+              <Suspense fallback={<p>Loading</p>}>
+                <Form></Form>
+              </Suspense>
+            }
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<Spin></Spin>}>
+                <Profile></Profile>
+              </Suspense>
+            }
+          ></Route>
+        </Routes>
+      </ThemeProvider>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
 import PopUp from "../PopUp/PopUp";
 import axios from "axios";
-import "./Message.css";
+import "./MessagesBox.css";
 export default function Message({
   messages,
   roomId,
@@ -47,7 +47,7 @@ export default function Message({
   };
   return (
     <div
-      className="Messages"
+      className="MessagesBox"
       style={
         messages.length > 5 ? { overflowY: "scroll" } : { overflowY: "hidden" }
       }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import RoomSchema from "../Schema/RoomSchema.js";
+import RoomSchema from "../schema/roomschema.js";
 export const RoomRouter = Router();
 RoomRouter.post("/create", async (req, res) => {
   const roomId = req.body.name;

@@ -8,7 +8,7 @@ import Picker from "emoji-picker-react";
 import "./SendMessageForm.css";
 import axios from "axios";
 import Recorder from "../ReactRecorder/Recorder";
-import { HandleEmojiPicker } from "../../Store/postslice";
+import { HandleEmojiPicker } from "../../store/postslice";
 
 export default function SendMessageForm({
   Value,

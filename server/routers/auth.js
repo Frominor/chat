@@ -1,16 +1,14 @@
 import { Router } from "express";
-import UserSchema from "../Schema/UserSchema.js";
+import UserSchema from "../schema/userschema.js";
 import jwtDecode from "jwt-decode";
 import jwt from "jsonwebtoken";
-import { UserLoginModel, UserRegisterModel } from "../model/UserModel.js";
+import { UserLoginModel, UserRegisterModel } from "../model/usermodel.js";
 export const authRouter = Router();
 authRouter.get("/getMe/:token", async (req, res) => {
-  console.log();
   try {
     const jwttoken = req.params.token;
     const decode = jwtDecode(jwttoken);
     const user = await UserSchema.findById(decode.user._id);
-    console.log(user);
     if (!user) {
       return res.json({});
     }

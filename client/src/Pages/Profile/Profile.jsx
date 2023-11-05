@@ -2,7 +2,7 @@ import React from "react";
 import "./Profile.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import ProfileAvatar from "../Avatar/Avatar";
+import ProfileAvatar from "../../components/Avatar/Avatar";
 import RightSide from "./RightSide/RightSide";
 
 export default function Profile() {
