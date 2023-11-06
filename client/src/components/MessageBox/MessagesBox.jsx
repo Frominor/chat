@@ -2,9 +2,9 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
-import PopUp from "../PopUp/PopUp";
-import axios from "axios";
-import "./MessagesBox.css";
+import PopUp from "../popup/popup";
+import axios from "../../axios/axios";
+import "./messagesbox.css";
 export default function Message({
   messages,
   roomId,
@@ -31,10 +31,7 @@ export default function Message({
   async function SaveMessage(message) {
     message.text = Value;
     message.roomId = roomId;
-    const { data } = await axios.post(
-      "http://localhost:5000/message/edit",
-      message
-    );
+    const { data } = await axios.post("/message/edit", message);
     SetValue("");
     dispatch({
       type: "CONNECTION",

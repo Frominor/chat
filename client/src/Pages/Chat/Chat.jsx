@@ -1,14 +1,14 @@
 import React from "react";
-import "./Chat.css";
-import MessagesBox from "../../components/MessageBox/MessagesBox";
-import SendMessageForm from "../../components/SendMessageForm/SendMessageForm";
-import PreloaderMessages from "../../components/PreloaderMessages/PreloaderMessages";
+import "./chat.css";
+import MessagesBox from "../../components/messagebox/messagesbox";
+import SendMessageForm from "../../components/sendmessageform/sendmessageform";
+import PreloaderMessages from "../../components/preloadermessages/preloadermessages";
 export default function Chat({ messages, socket, roomId, dispatch }) {
   const [ImageUrl, SetImgUrl] = React.useState([]);
   const [EditedMessage, SetEditedMessage] = React.useState(null);
   const [Value, SetValue] = React.useState("");
   return (
-    <div className="Chat">
+    <div className="chat">
       <div className="Title">
         <h3>Комната-{roomId}</h3>
       </div>

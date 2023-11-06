@@ -82,6 +82,8 @@ io.on("connection", (socket) => {
   );
   socket.on("ROOM:DELETE_MESSAGE", async (obj) => {
     const roomId = obj.roomId;
+    const id = obj.id;
+    const deletedMessage = await MessageSchema.findOneAndDelete({ id });
     const room = await RoomSchema.findOne({ roomId });
     const messages = room.messages;
     const newmessages = messages.filter((item) => {

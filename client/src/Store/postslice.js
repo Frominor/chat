@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../axios/axios";
 
 const initialState = {
   UserInfo: null,
@@ -9,20 +9,14 @@ const initialState = {
 export const AsyncUserRegisterThunk = createAsyncThunk(
   "user/Register",
   async (params) => {
-    const { data } = await axios.post(
-      "http://localhost:5000/auth/register",
-      params
-    );
+    const { data } = await axios.post("/auth/register", params);
     return data;
   }
 );
 export const AsyncSignInThunk = createAsyncThunk(
   "user/SignIn",
   async (params) => {
-    const { data } = await axios.post(
-      "http://localhost:5000/auth/login",
-      params
-    );
+    const { data } = await axios.post("/auth/login", params);
     return data;
   }
 );
@@ -38,6 +32,7 @@ const UserSlice = createSlice({
       state.token = action.payload.token;
     },
     ChangeUserInfo: (state, action) => {
+      console.log(action.payload);
       state.UserInfo = action.payload;
     },
     HandleEmojiPicker: (state, action) => {

@@ -11,7 +11,7 @@ import { useForm, Controller, useFormState } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AsyncSignInThunk } from "../../store/postslice";
-export default function SignIn() {
+export default function signin() {
   const dispatch = useDispatch();
   const State = useSelector((state) => state.user);
   const { handleSubmit, control } = useForm({ mode: "onSubmit" });

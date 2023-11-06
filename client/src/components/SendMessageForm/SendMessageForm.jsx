@@ -5,12 +5,12 @@ import SendIcon from "@mui/icons-material/Send";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import { useSelector, useDispatch } from "react-redux";
 import Picker from "emoji-picker-react";
-import "./SendMessageForm.css";
-import axios from "axios";
-import Recorder from "../ReactRecorder/Recorder";
+import "./sendmessageform.css";
+import axios from "../../axios/axios";
+import Recorder from "../reactrecorder/recorder";
 import { HandleEmojiPicker } from "../../store/postslice";
 
-export default function SendMessageForm({
+export default function sendmessageform({
   Value,
   SetValue,
   roomId,
@@ -35,10 +35,7 @@ export default function SendMessageForm({
   async function SaveMessage(EditedMessage) {
     EditedMessage.text = Value;
     EditedMessage.roomId = roomId;
-    const { data } = await axios.post(
-      "http://localhost:5000/message/edit",
-      EditedMessage
-    );
+    const { data } = await axios.post("/message/edit", EditedMessage);
     SetValue("");
     dispatch({
       type: "CONNECTION",

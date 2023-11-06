@@ -1,9 +1,9 @@
 import React from "react";
-import "./EditProfile.css";
+import "./editprofile.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Box, Button, Grid, TextField } from "@mui/material";
 import { Link, Navigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axios/axios";
 import { ChangeUserInfo } from "../../store/postslice";
 import {
   useForm,
@@ -11,9 +11,9 @@ import {
   Controller,
   useFieldArray,
 } from "react-hook-form";
-import ProfileAvatar from "../../components/Avatar/Avatar";
+import ProfileAvatar from "../../components/avatar/avatar";
 
-export default function EditProfile() {
+export default function editprofile() {
   const State = useSelector((state) => state.user);
 
   const [NavigateTo, SetNavigateTo] = React.useState(false);
@@ -27,6 +27,7 @@ export default function EditProfile() {
   const { errors } = useFormState({
     control,
   });
+  console.log(errors);
   const { fields } = useFieldArray({
     name: "user",
     control,
@@ -47,22 +48,22 @@ export default function EditProfile() {
     return <Navigate to={"/profile"}></Navigate>;
   }
   const onSubmit = async (obj) => {
+    console.log(obj);
     if (Img) {
+      console.log(Img);
       const formdata = new FormData();
       formdata.append("file", Img);
       obj.user = obj.user[0];
       obj.user.id = State.UserInfo._id;
       const { data } = await axios.post(
-        `http://localhost:5000/file/${JSON.stringify(obj.user)}`,
+        `/file/${JSON.stringify(obj.user)}`,
         formdata
       );
       dispatch(ChangeUserInfo(data));
       SetNavigateTo(true);
     } else {
       obj.user[0].id = State.UserInfo._id;
-      const { data } = await axios.post(
-        `http://localhost:5000/file/${JSON.stringify(...obj.user)}`
-      );
+      const { data } = await axios.post(`/file/${JSON.stringify(...obj.user)}`);
       dispatch(ChangeUserInfo(data));
       SetNavigateTo(true);
     }
@@ -72,7 +73,7 @@ export default function EditProfile() {
       <div className="LeftSide">
         <ProfileAvatar></ProfileAvatar>
         <div className="Links">
-          <ul>
+          <ul style={{ listStyleType: "none" }}>
             {Links.map((link) => {
               return (
                 <li className="Link">
@@ -105,7 +106,6 @@ export default function EditProfile() {
                         name={fieldName}
                         control={control}
                         key={item.id}
-                        rules={{ maxLength: 30 }}
                         render={({ field }) => (
                           <TextField
                             sx={{ padding: 5 + "px", marginTop: 18 + "px" }}
@@ -122,8 +122,7 @@ export default function EditProfile() {
                       <Controller
                         control={control}
                         name={email}
-                        key={item.id}
-                        rules={{ maxLength: 20 }}
+                        key={new Date()}
                         render={({ field }) => (
                           <TextField
                             sx={{ padding: 5 + "px", marginTop: 7 + "px" }}

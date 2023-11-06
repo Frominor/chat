@@ -2,16 +2,16 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 import { Spin } from "antd";
-import Header from "./components/Header/Header";
+import Header from "./components/header/header";
 import React from "react";
-import Register from "./Pages/Register/Register";
-import Form from "./Pages/Form/Form";
-import SignIn from "./Pages/SignIn/SignIn";
-import Profile from "./Pages/Profile/Profile";
+import Register from "./Pages/register/register";
+import Form from "./Pages/form/form";
+import SignIn from "./Pages/signin/signin.jsx";
+import Profile from "./Pages/Profile/profile";
 import { useDispatch, useSelector } from "react-redux";
 import { ReloadPageReducer } from "./store/postslice";
-import axios from "axios";
-import EditProfile from "./Pages/EditProfile/EditProfile";
+import axios from "./axios/axios";
+import EditProfile from "./Pages/editprofile/editprofile.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 function App() {
@@ -19,7 +19,7 @@ function App() {
   React.useEffect(() => {
     async function AsyncGetUserInfo() {
       const { data } = await axios.get(
-        `http://localhost:5000/auth/getMe/${localStorage.getItem("token")}`
+        `/auth/getMe/${localStorage.getItem("token")}`
       );
 
       if (data.ErrorMessage) {

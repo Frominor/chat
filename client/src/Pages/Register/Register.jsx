@@ -12,7 +12,7 @@ import { useForm, Controller, useFormState } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { AsyncUserRegisterThunk } from "../../store/postslice";
 
-export default function SignIn() {
+export default function Register() {
   const dispatch = useDispatch();
   const State = useSelector((state) => state.user);
   const { register, handleSubmit, control } = useForm({ mode: "onSubmit" });

@@ -60,7 +60,6 @@ authRouter.post("/register", UserRegisterModel, async (req, res) => {
 authRouter.post("/login", UserLoginModel, async (req, res) => {
   try {
     const user = await UserSchema.findOne({ email: req.body.email });
-
     if (!user) {
       return res.json({
         message: "Такой пользователь не найден",

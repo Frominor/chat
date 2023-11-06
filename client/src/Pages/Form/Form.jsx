@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from "../../axios/axios";
 import React from "react";
-import "./Form.css";
+import "./form.css";
 import { useReducer } from "react";
 import io, { Socket } from "socket.io-client";
 import { Controller, useForm, useFormState } from "react-hook-form";
-import Chat from "../Chat/Chat";
+import Chat from "../chat/chat";
 import reducer from "../../reducer";
 import { Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
-export default function Form() {
+export default function form() {
   const { register, handleSubmit, control } = useForm({ mode: "onSubmit" });
   const { errors } = useFormState({
     control,
@@ -43,7 +43,7 @@ export default function Form() {
       roomId,
       userName,
     });
-    const { data } = await axios.get(`http://localhost:5000/rooms/${roomId}`);
+    const { data } = await axios.get(`/rooms/${roomId}`);
     console.log(data);
     dispatch({
       type: "ROOM:JOINED",
@@ -84,7 +84,7 @@ export default function Form() {
   const [userName, SetuserName] = React.useState("");
   const onSubmit = async (obj) => {
     await axios
-      .post("http://localhost:5000/rooms", {
+      .post("/rooms", {
         roomId,
         userName,
       })

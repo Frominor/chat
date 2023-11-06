@@ -32,3 +32,8 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 1200px) {
+  .LeftSide {
+    font-size: 10px;
+  }
+}

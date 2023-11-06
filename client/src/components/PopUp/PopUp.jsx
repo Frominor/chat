@@ -1,5 +1,5 @@
 import React from "react";
-import "./PopUp.css";
+import "./popup.css";
 export default function PopUp({
   url,
   PopUpActive,

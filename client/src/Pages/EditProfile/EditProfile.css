@@ -39,8 +39,13 @@ p {
   font-size: 18px;
   color: #6c75a7;
 }
+.Link {
+  list-style-type: none;
+}
 .Links {
   border-radius: 5px;
+  text-align: center;
+  list-style-type: none;
   background: #ffffff;
 }
 .ul {
@@ -128,4 +133,22 @@ li {
 }
 .EditProfileSvgBox:hover {
   opacity: 0.5;
+}
+@media (max-width: 1200px) {
+  .LeftSide {
+    font-size: 10px;
+  }
+  p,
+  h5 {
+    font-size: 8px;
+  }
+}
+@media (max-width: 620px) {
+  .LeftSide {
+    font-size: 6px;
+  }
+  p,
+  h5 {
+    font-size: 6px;
+  }
 }

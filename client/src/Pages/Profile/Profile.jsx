@@ -1,11 +1,11 @@
 import React from "react";
-import "./Profile.css";
+import "./profile.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import ProfileAvatar from "../../components/Avatar/Avatar";
-import RightSide from "./RightSide/RightSide";
+import ProfileAvatar from "../../components/avatar/avatar";
+import RightSide from "./rightside/RightSide";
 
-export default function Profile() {
+export default function profile() {
   const [Links, SetLinks] = React.useState([
     "GitHub",
     "Twitter",
@@ -25,7 +25,7 @@ export default function Profile() {
             {Links.map((link) => {
               return (
                 <li className="Link">
-                  {link} {"dsadadadada"}
+                  {link} {"-->dsadadadada"}
                 </li>
               );
             })}
