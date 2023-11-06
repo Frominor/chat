@@ -1,11 +1,6 @@
 import React from "react";
 import "./popup.css";
-export default function PopUp({
-  url,
-  PopUpActive,
-  SetPopUpActive,
-  SetScaledImgSrc,
-}) {
+export default function PopUp({ url, SetPopUpActive, SetScaledImgSrc }) {
   return (
     <div
       className="PopUp"
