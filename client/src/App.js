@@ -8,7 +8,7 @@ import Register from "./Pages/register/register";
 import Form from "./Pages/form/form";
 import SignIn from "./Pages/signin/signin.jsx";
 import Profile from "./Pages/Profile/profile";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ReloadPageReducer } from "./store/postslice";
 import axios from "./axios/axios";
 import EditProfile from "./Pages/editprofile/editprofile.jsx";
