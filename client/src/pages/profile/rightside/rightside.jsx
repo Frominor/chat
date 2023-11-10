@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import "./RightSide.css";
+import "./rightside.css";
 import { useSelector } from "react-redux";
 export default function RightSide() {
   const State = useSelector((state) => state.user);

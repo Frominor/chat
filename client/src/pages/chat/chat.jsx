@@ -1,6 +1,6 @@
 import React from "react";
 import "./chat.css";
-import MessagesBox from "../../components/messagebox/messagesbox";
+import MessagesBox from "../../components/messagebox/messagebox";
 import SendMessageForm from "../../components/sendmessageform/sendmessageform";
 import PreloaderMessages from "../../components/preloadermessages/preloadermessages";
 export default function Chat({ messages, socket, roomId, dispatch }) {
@@ -8,7 +8,7 @@ export default function Chat({ messages, socket, roomId, dispatch }) {
   const [EditedMessage, SetEditedMessage] = React.useState(null);
   const [Value, SetValue] = React.useState("");
   return (
-    <div className="chat">
+    <div className="Chat">
       <div className="Title">
         <h3>Комната-{roomId}</h3>
       </div>

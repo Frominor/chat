@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Avatar } from "@mui/material";
 import PopUp from "../popup/popup";
 import axios from "../../axios/axios";
-import "./messagesbox.css";
+import "./messagebox.css";
 export default function Message({
   messages,
   roomId,

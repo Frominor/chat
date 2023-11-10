@@ -3,7 +3,7 @@ import "./profile.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import ProfileAvatar from "../../components/avatar/avatar";
-import RightSide from "./rightside/RightSide";
+import RightSide from "./rightside/rightside";
 
 export default function profile() {
   const [Links, SetLinks] = React.useState([

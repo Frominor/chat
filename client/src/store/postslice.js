@@ -17,6 +17,7 @@ export const AsyncSignInThunk = createAsyncThunk(
   "user/SignIn",
   async (params) => {
     const { data } = await axios.post("/auth/login", params);
+    console.log(data);
     return data;
   }
 );
