@@ -134,15 +134,7 @@ li {
 .EditProfileSvgBox:hover {
   opacity: 0.5;
 }
-@media (max-width: 1200px) {
-  .LeftSide {
-    font-size: 10px;
-  }
-  p,
-  h5 {
-    font-size: 8px;
-  }
-}
+
 @media (max-width: 620px) {
   .LeftSide {
     font-size: 6px;

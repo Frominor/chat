@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 import PopUp from "../popup/popup";
 import axios from "../../axios/axios";
 import "./messagebox.css";
@@ -43,10 +44,24 @@ export default function Message({
     SetPopUpActive(true);
   };
   return (
-    <div
+    <Box
       className="MessagesBox"
-      style={
-        messages.length > 5 ? { overflowY: "scroll" } : { overflowY: "hidden" }
+      sx={
+        messages.length > 5
+          ? {
+              overflowY: "scroll",
+              boxSizing: "border-box",
+              minHeight: 100 + "%",
+              width: 100 + "%",
+              paddingBottom: 90 + "px",
+            }
+          : {
+              overflowY: "hidden",
+              boxSizing: "border-box",
+              minHeight: 100 + "%",
+              width: 100 + "%",
+              paddingBottom: 90 + "px",
+            }
       }
     >
       {PopUpActive && (
@@ -58,15 +73,41 @@ export default function Message({
         ></PopUp>
       )}
       {messages.map((message) => {
+        console.log(message?.userInfo?.email);
+        console.log(message?.userInfo?.email === State?.UserInfo?.email);
         return (
-          <div
-            className={
-              message.userInfo.email === State.UserInfo.email
-                ? "YourMessage"
-                : "OtherMessage"
+          <Box
+            sx={
+              message?.userInfo?.email === State?.UserInfo?.email
+                ? {
+                    padding: 5 + "px",
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: 65 + "px",
+                    marginBottom: 20 + "px",
+                    justifyContent: "start",
+                    marginTop: 10 + "px",
+                    width: 90 + "%",
+                    borderRadius: 20 + "px",
+                    borderBottomLeftRadius: 0 + "px",
+                    color: "white",
+                  }
+                : {
+                    padding: 5 + "px",
+                    display: "flex",
+                    width: 90 + "%",
+                    float: "right",
+                    marginTop: 60 + "px",
+                    marginRight: 65 + "px",
+                    justifyContent: "flex-end",
+                    marginBottom: 20 + "px",
+                    borderRadius: 20 + "px",
+                    borderBottomRightRadius: 0 + "px",
+                    color: "white",
+                  }
             }
           >
-            <div
+            <Box
               className={
                 message.userInfo.email === State.UserInfo.email
                   ? "YourAvatar"
@@ -88,12 +129,16 @@ export default function Message({
                     : "/static/images/avatar/2.jpg"
                 }
               />
-            </div>
-            <div className="MessageBox">
-              <p className="text" style={{ color: "white" }}>
+            </Box>
+            <Box className="MessageBox">
+              <Typography
+                variant="p"
+                className="text"
+                sx={{ color: "white", fontSize: 20 }}
+              >
                 {message.message}
-              </p>
-              <div className="ImgMessageBox">
+              </Typography>
+              <Box className="ImgMessageBox">
                 {message.Images?.map((item) => {
                   return (
                     <img
@@ -111,9 +156,11 @@ export default function Message({
                 {message.AudioMessage && (
                   <audio src={message.AudioMessage} controls></audio>
                 )}
-              </div>
-              <div className="UserNameAndDelete/Edit">
-                <span>{message.userInfo.fullName}</span>
+              </Box>
+              <Box className="UserNameAndDelete/Edit">
+                <Typography variant="span">
+                  {message.userInfo.fullName}
+                </Typography>
                 {message.userInfo.email === State.UserInfo.email ? (
                   <Button
                     sx={{ marginRight: 6 + "px", padding: 5 + "px" }}
@@ -153,11 +200,11 @@ export default function Message({
                 ) : (
                   ""
                 )}
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Box>
         );
       })}
-    </div>
+    </Box>
   );
 }

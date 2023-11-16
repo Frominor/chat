@@ -2,7 +2,8 @@ import React from "react";
 import { ReactMic } from "react-mic";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import ClearIcon from "@mui/icons-material/Clear";
-import "./recorder.css";
+
+import { Box } from "@mui/material";
 export default function Recorder({
   AudioMessage,
   SetAudioMessage,
@@ -19,8 +20,13 @@ export default function Recorder({
     SetVoice(false);
   };
   return (
-    <div className="Recorder">
-      <ReactMic className="React-mic" record={Voice} onStop={OnStop}></ReactMic>
+    <Box className="Recorder">
+      <ReactMic
+        className="React-mic"
+        record={Voice}
+        onStop={OnStop}
+        style={{}}
+      ></ReactMic>
       {!Voice ? (
         <KeyboardVoiceIcon
           sx={{
@@ -46,8 +52,18 @@ export default function Recorder({
         </ClearIcon>
       )}
       {AudioMessage ? (
-        <audio className="DemoAudio" controls src={AudioMessage}></audio>
+        <audio
+          className="DemoAudio"
+          controls
+          src={AudioMessage}
+          style={{
+            position: "absolute",
+            bottom: 12 + "%",
+            left: 34.4 + "%",
+            width: 520 + "px",
+          }}
+        ></audio>
       ) : null}
-    </div>
+    </Box>
   );
 }

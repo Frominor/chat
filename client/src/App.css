@@ -37,3 +37,6 @@
     font-size: 10px;
   }
 }
+.React-mic {
+  display: none !important;
+}

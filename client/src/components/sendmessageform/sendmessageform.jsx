@@ -1,11 +1,10 @@
 import React from "react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import { TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import { useSelector, useDispatch } from "react-redux";
 import Picker from "emoji-picker-react";
-import "./sendmessageform.css";
 import axios from "../../axios/axios";
 import Recorder from "../reactrecorder/recorder";
 import { HandleEmojiPicker } from "../../store/postslice";
@@ -81,18 +80,35 @@ export default function sendmessageform({
     }
   };
   return (
-    <div className="SendMessage">
-      <div className={EmojiStyle ? "MovedEmoji" : "Emoji"}>
-        <button
+    <Box
+      className="SendMessage"
+      sx={{
+        height: 80 + "px",
+        marginTop: -80 + "px",
+        width: 100 + "%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box className={EmojiStyle ? "MovedEmoji" : "Emoji"}>
+        <Button
           disabled={Status === "recording" ? true : false}
-          style={{ border: "none", background: "none" }}
+          sx={{
+            border: "none",
+            background: "none",
+            color: "black",
+            ":hover": {
+              background: "white",
+            },
+          }}
           onClick={() => {
             SetEmojiStyle((val) => !val);
             ReduxDispatch(HandleEmojiPicker(!State.ShowPicker));
           }}
         >
           <EmojiEmotionsIcon style={{ cursor: "pointer" }}></EmojiEmotionsIcon>
-        </button>
+        </Button>
         {State.ShowPicker && (
           <Picker
             autoFocusSearch={true}
@@ -100,7 +116,7 @@ export default function sendmessageform({
             picketStyle={{ width: "100%", height: "50%" }}
           ></Picker>
         )}
-      </div>
+      </Box>
       <TextField
         id="standard-multiline-static"
         label="Сообщение"
@@ -118,7 +134,19 @@ export default function sendmessageform({
           }
         }}
       />
-      <button onClick={onSubmit} style={{ background: "none", border: "none" }}>
+      <Button
+        disableRipple
+        onClick={onSubmit}
+        sx={{
+          background: "none",
+          border: "none",
+          color: "black",
+          cursor: "default",
+          ":hover": {
+            background: "white",
+          },
+        }}
+      >
         <SendIcon
           sx={{
             ":hover": {
@@ -130,7 +158,7 @@ export default function sendmessageform({
             marginTop: 30 + "px",
           }}
         ></SendIcon>
-      </button>
+      </Button>
       <input
         id="imgloader"
         type="file"
@@ -143,7 +171,6 @@ export default function sendmessageform({
           arr.forEach((item) => {
             const fileReader = new FileReader();
             fileReader.onloadend = () => {
-              console.log(ImageUrl);
               SetImgUrl((Img) => {
                 return [...Img, { src: fileReader.result, date: new Date() }];
               });
@@ -161,6 +188,6 @@ export default function sendmessageform({
         AudioMessage={AudioMessage}
         SetAudioMessage={SetAudioMessage}
       ></Recorder>
-    </div>
+    </Box>
   );
 }

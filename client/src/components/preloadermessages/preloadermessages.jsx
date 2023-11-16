@@ -1,11 +1,35 @@
 import React from "react";
 import close from "./close.png";
+import { Box } from "@mui/material";
 export default function PreloaderMessages({ ImageUrl, SetImgUrl }) {
   return (
-    <div className="MessageForSend">
+    <Box
+      className="MessageForSend"
+      sx={{
+        marginLeft: 25.5 + "%",
+        width: 60 + "%",
+        marginTop: 5 + "px",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       {ImageUrl.map((item) => {
         return (
-          <div className="SendingMessage" style={{ position: "relative" }}>
+          <Box
+            className="SendingMessage"
+            sx={{
+              position: "relative",
+              width: 120 + "px",
+              height: 90 + "px",
+              hover: {
+                transition: "5ms ease-in-out",
+                transform: "scale(1.4)",
+              },
+              display: "flex",
+              marginLeft: 50 + "px",
+              justifyContent: "space-evenly",
+            }}
+          >
             <img
               style={{
                 width: 150 + "px",
@@ -31,9 +55,9 @@ export default function PreloaderMessages({ ImageUrl, SetImgUrl }) {
                 height: 20 + "px",
               }}
             ></img>
-          </div>
+          </Box>
         );
       })}
-    </div>
+    </Box>
   );
 }

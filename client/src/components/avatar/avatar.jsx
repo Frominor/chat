@@ -1,17 +1,25 @@
 import React from "react";
-import "./avatar.css";
+
 import { useSelector } from "react-redux";
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
+import Container from "@mui/material/Container";
 export default function ProfileAvatar() {
   const State = useSelector((state) => state.user);
   return (
-    <div className="Avatar">
+    <Container
+      className="Avatar"
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
       <Avatar
         sx={
           State.UserInfo
             ? {
                 width: 250,
                 height: 250,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
                 marginTop: 20 + "px",
                 marginBottom: 20 + "px",
                 "@media(max-height: 845px)": {
@@ -31,9 +39,21 @@ export default function ProfileAvatar() {
             : "/static/images/avatar/2.jpg"
         }
       />
-      <h5>{State.UserInfo.fullName}</h5>
-      <p>{"Ваша профессия"}</p>
-      <p>{"Ваша страна и город"}</p>
-    </div>
+      <Typography variant="h6" sx={{}}>
+        {State.UserInfo.fullName}
+      </Typography>
+      <Typography
+        variant="p"
+        sx={{ color: "blue", fontSize: 20, fontFamily: "monospace" }}
+      >
+        {"Ваша профессия"}
+      </Typography>
+      <Typography
+        variant="p"
+        sx={{ color: "blue", fontSize: 20, fontFamily: "monospace" }}
+      >
+        {"Ваша страна и город"}
+      </Typography>
+    </Container>
   );
 }
