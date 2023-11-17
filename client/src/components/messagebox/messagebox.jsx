@@ -16,7 +16,7 @@ export default function Message({
 }) {
   const [PopUpActive, SetPopUpActive] = React.useState(false);
   const [ScaledImgSrc, SetScaledImgSrc] = React.useState(null);
-  const State = useSelector((state) => state.user);
+  const State = useSelector((State) => State.user);
   const del = ({ text, userName, date }) => {
     const obj = {
       text,

@@ -1,5 +1,4 @@
 import React from "react";
-import "./profile.css";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import ProfileAvatar from "../../components/avatar/avatar";
@@ -13,7 +12,7 @@ export default function profile() {
     "Вконтакте",
     "Telegram",
   ]);
-  const State = useSelector((state) => state.user);
+  const State = useSelector((State) => State.user);
   if (!State.token) {
     return <Navigate to={"/register"}></Navigate>;
   }
@@ -28,20 +27,43 @@ export default function profile() {
         justifyContent: "space-around",
       }}
     >
-      <div className="LeftSide">
+      <Box
+        className="LeftSide"
+        sx={{
+          width: 25 + "%",
+          margin: "16px 20px 0px 20px",
+          display: "flex",
+          height: 82.5 + "%",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+        }}
+      >
         <ProfileAvatar></ProfileAvatar>
-        <div className="Links">
-          <ul>
+        <Box
+          className="Links"
+          sx={{
+            marginTop: 20 + "px",
+            borderRadius: 5 + "px",
+            background: "#ffffff",
+          }}
+        >
+          <ul
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
             {Links.map((link) => {
               return (
-                <li className="Link">
+                <li className="Link" style={{ margin: 5 + "px" }}>
                   {link} {"-->dsadadadada"}
                 </li>
               );
             })}
           </ul>
-        </div>
-      </div>
+        </Box>
+      </Box>
       <RightSide></RightSide>
     </Box>
   );

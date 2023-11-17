@@ -23,7 +23,7 @@ export default function Chat({ messages, socket, roomId, dispatch }) {
       <Box className="Title" sx={{ width: 100 + "%", textAlign: "center" }}>
         <Typography
           variant="h3"
-          sx={{ margin: 0, fontSize: 20, color: "blue" }}
+          sx={{ margin: 0, fontSize: 20, color: "brown", marginTop: 20 + "px" }}
         >
           Комната-{roomId}
         </Typography>

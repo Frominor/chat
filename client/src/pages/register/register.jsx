@@ -14,8 +14,8 @@ import { AsyncUserRegisterThunk } from "../../store/postslice";
 
 export default function Register() {
   const dispatch = useDispatch();
-  const State = useSelector((state) => state.user);
-  const { register, handleSubmit, control } = useForm({ mode: "onSubmit" });
+  const State = useSelector((State) => State.user);
+  const { handleSubmit, control } = useForm({ mode: "onSubmit" });
   const { errors } = useFormState({
     control,
   });

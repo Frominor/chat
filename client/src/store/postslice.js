@@ -5,6 +5,7 @@ const initialState = {
   UserInfo: null,
   token: null,
   ShowPicker: false,
+  Error: null,
 };
 export const AsyncUserRegisterThunk = createAsyncThunk(
   "user/Register",
@@ -17,7 +18,6 @@ export const AsyncSignInThunk = createAsyncThunk(
   "user/SignIn",
   async (params) => {
     const { data } = await axios.post("/auth/login", params);
-    console.log(data);
     return data;
   }
 );
@@ -33,7 +33,6 @@ const UserSlice = createSlice({
       state.token = action.payload.token;
     },
     ChangeUserInfo: (state, action) => {
-      console.log(action.payload);
       state.UserInfo = action.payload;
     },
     HandleEmojiPicker: (state, action) => {
@@ -44,10 +43,19 @@ const UserSlice = createSlice({
     [AsyncUserRegisterThunk.fulfilled]: (state, action) => {
       state.UserInfo = action.payload._doc;
       state.token = action.payload.token;
+      if (state.token) {
+        window.localStorage.setItem("token", state.token);
+      }
     },
     [AsyncSignInThunk.fulfilled]: (state, action) => {
       state.UserInfo = action.payload.user;
       state.token = action.payload.token;
+      if (action.payload?.message) {
+        state.Error = action.payload.message;
+      }
+      if (state.token) {
+        window.localStorage.setItem("token", state.token);
+      }
     },
   },
 });

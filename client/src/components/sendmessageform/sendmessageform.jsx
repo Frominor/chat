@@ -23,7 +23,7 @@ export default function sendmessageform({
   const ReduxDispatch = useDispatch();
   const [Key, SetKey] = React.useState("");
   const [Voice, SetVoice] = React.useState(false);
-  const State = useSelector((state) => state.user);
+  const State = useSelector((State) => State.user);
   const [AudioMessage, SetAudioMessage] = React.useState(null);
   const [EmojiStyle, SetEmojiStyle] = React.useState(false);
   const [Status, SetStatus] = React.useState(null);

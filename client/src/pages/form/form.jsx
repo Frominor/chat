@@ -15,9 +15,8 @@ export default function form() {
     control,
   });
   const socket = io("http://localhost:5000");
-  const UserInfo = useSelector((state) => state.user?.UserInfo);
+  const UserInfo = useSelector((State) => State.user?.UserInfo);
 
-  const token = useSelector((state) => state.user.token);
   const [State, dispatch] = useReducer(reducer, {
     isAuth: false,
     messages: [],
@@ -26,9 +25,6 @@ export default function form() {
     roomId: "",
   });
   React.useEffect(() => {
-    if (token) {
-      window.localStorage.setItem("token", token);
-    }
     SetuserName(UserInfo?.fullName);
   }, []);
   const onLogin = async (roomId, userName) => {
@@ -45,7 +41,7 @@ export default function form() {
       userName,
     });
     const { data } = await axios.get(`/rooms/${roomId}`);
-    console.log(data);
+
     dispatch({
       type: "ROOM:JOINED",
       payload: data.users,

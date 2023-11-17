@@ -1,3 +1,17 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -39,4 +53,32 @@
 }
 .React-mic {
   display: none !important;
+}
+.Avatar {
+  transform: scaleX(1.15);
+  transform: scaleY(1.25);
+  border-radius: 5px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Avatar:hover.EditProfileSvgBox {
+  opacity: 1;
+  cursor: pointer;
+}
+.EditProfileSvgBox:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 620px) {
+  .LeftSide {
+    font-size: 6px;
+  }
+  p,
+  h5 {
+    font-size: 6px;
+  }
 }

@@ -1,7 +1,14 @@
 import React from "react";
-import "./editprofile.css";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Avatar, Box, Button, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Link, Navigate } from "react-router-dom";
 import axios from "../../axios/axios";
 import { ChangeUserInfo } from "../../store/postslice";
@@ -14,7 +21,7 @@ import {
 import ProfileAvatar from "../../components/avatar/avatar";
 
 export default function editprofile() {
-  const State = useSelector((state) => state.user);
+  const State = useSelector((State) => State.user);
 
   const [NavigateTo, SetNavigateTo] = React.useState(false);
   const { handleSubmit, control } = useForm({
@@ -39,7 +46,12 @@ export default function editprofile() {
     "Вконтакте",
     "Telegram",
   ]);
-
+  const [UserInfoInput, SetUserInfoInput] = React.useState([
+    { name: "ФИО" },
+    { name: "Почта" },
+    { name: "Телефон" },
+    { name: "Адрес" },
+  ]);
   const [Img, SetImg] = React.useState(null);
   if (!State.token) {
     return <Navigate to={"/register"}></Navigate>;
@@ -48,7 +60,6 @@ export default function editprofile() {
     return <Navigate to={"/profile"}></Navigate>;
   }
   const onSubmit = async (obj) => {
-    console.log(obj);
     if (Img) {
       console.log(Img);
       const formdata = new FormData();
@@ -69,31 +80,107 @@ export default function editprofile() {
     }
   };
   return (
-    <form className="Profile" onSubmit={handleSubmit(onSubmit)}>
-      <div className="LeftSide">
+    <Container
+      disableGutters
+      maxWidth
+      component={"form"}
+      className="Profile"
+      onSubmit={handleSubmit(onSubmit)}
+      sx={{
+        display: "flex",
+        width: 100 + "%",
+        height: 90 + "vh",
+        background: "#e2e8f0",
+        justifyContent: "space-around",
+      }}
+    >
+      <Box
+        className="LeftSide"
+        sx={{
+          width: 25 + "%",
+          margin: "0px 20px 0px 20px",
+          height: 82.5 + "%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+        }}
+      >
         <ProfileAvatar></ProfileAvatar>
-        <div className="Links">
-          <ul style={{ listStyleType: "none" }}>
+        <Box
+          className="Links"
+          sx={{
+            borderRadius: 5 + "px",
+            textAlign: "center",
+            listStyleType: "none",
+            background: "#ffffff",
+          }}
+        >
+          <ul
+            style={{
+              listStyleType: "none",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
             {Links.map((link) => {
               return (
-                <li className="Link">
+                <li
+                  className="Link"
+                  style={{ margin: 5 + "px", listStyleType: "none" }}
+                >
                   {link} {"dsadadadada"}
                 </li>
               );
             })}
           </ul>
-        </div>
-      </div>
-      <div className="EditProfileRightSide">
-        <div className="EditProfileUserInfo">
-          <div className="EditProfileDatas">
-            <p>ФИО</p>
-            <p>Почта</p>
-            <p>Телефон</p>
-            <p>Адрес</p>
-            <p>Пол</p>
-          </div>
-          <div className="EditProfileParsedDatas">
+        </Box>
+      </Box>
+      <Box
+        className="EditProfileRightSide"
+        sx={{
+          width: 65 + "%",
+          height: 80 + "%",
+          borderRadius: 5 + "px",
+          marginTop: 15 + "px",
+          background: "#ffffff",
+        }}
+      >
+        <Box
+          className="EditProfileUserInfo"
+          sx={{ marginTop: 20 + "px", display: "flex" }}
+        >
+          <Box
+            className="EditProfileDatas"
+            sx={{
+              width: 30 + "%",
+
+              marginLeft: 30 + "px",
+            }}
+          >
+            {UserInfoInput.map((item) => {
+              return (
+                <Typography
+                  component={"p"}
+                  sx={{
+                    marginTop: 0 + "px",
+                    fontSize: 18 + "px",
+                    color: "#6c75a7",
+                    fontSize: 18 + "px",
+                    color: "#6c75a7",
+                    padding: 8.5 + "px",
+                    color: "black",
+                    borderBottom: "1px solid black",
+                    textAlign: "left",
+                    margin: "10px 0px 20px 0px",
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              );
+            })}
+          </Box>
+          <Box className="EditProfileParsedDatas" sx={{ width: 66 + "%" }}>
             <Box>
               <Grid container spacing={2} />
               <Grid item xs={12}>
@@ -139,9 +226,19 @@ export default function editprofile() {
                 })}
               </Grid>
             </Box>
-          </div>
-        </div>
-        <div className="Edit">
+          </Box>
+        </Box>
+        <Box
+          className="Edit"
+          sx={{
+            width: 80 + "%",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            height: 30 + "%",
+            marginLeft: 35 + "px",
+          }}
+        >
           <Button
             type="submit"
             sx={{
@@ -158,8 +255,8 @@ export default function editprofile() {
           >
             Сохранить
           </Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
       <label
         className="ChangeAvatar"
         for={"123"}
@@ -170,11 +267,29 @@ export default function editprofile() {
           height: 220,
           zIndex: 20,
           display: "flex",
+          left: 120 + "px",
           opacity: 1,
         }}
       >
-        <div className="EditProfileSvgBox">
+        <Box
+          className="EditProfileSvgBox"
+          sx={{
+            position: "absolute",
+            width: 245 + "px",
+            top: 21 + "%",
+            left: 25.5 + "%",
+            height: 305 + "px",
+            transform: "scale(0.96)",
+            borderRadius: 200 + "px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "rgba(128, 128, 128, 0.8)",
+            opacity: 0,
+          }}
+        >
           <svg
+            style={{ borderRadius: 150 + "px", background: "none" }}
             className="EditProfileSvg"
             width="100px"
             height="100px"
@@ -197,7 +312,7 @@ export default function editprofile() {
               stroke-linejoin="round"
             />
           </svg>
-        </div>
+        </Box>
       </label>
       <input
         id="123"
@@ -213,6 +328,6 @@ export default function editprofile() {
           SetImg(e.target.files[0]);
         }}
       ></input>
-    </form>
+    </Container>
   );
 }

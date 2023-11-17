@@ -10,15 +10,15 @@ import Container from "@mui/material/Container";
 import { useForm, Controller, useFormState } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Alert from "@mui/material/Alert";
 import { AsyncSignInThunk } from "../../store/postslice";
 export default function signin() {
   const dispatch = useDispatch();
-  const State = useSelector((state) => state.user);
+  const State = useSelector((State) => State.user);
   const { handleSubmit, control } = useForm({ mode: "onSubmit" });
   const { errors } = useFormState({
     control,
   });
-
   const onSubmit = async (obj) => {
     dispatch(AsyncSignInThunk(obj));
   };
@@ -94,6 +94,7 @@ export default function signin() {
           <Grid container justifyContent="flex-end"></Grid>
         </Box>
       </Box>
+      {State.Error ? <Alert severity="error">{State.Error}</Alert> : ""}
     </Container>
   );
 }
