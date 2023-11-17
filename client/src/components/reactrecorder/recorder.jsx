@@ -2,7 +2,6 @@ import React from "react";
 import { ReactMic } from "react-mic";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import ClearIcon from "@mui/icons-material/Clear";
-
 import { Box } from "@mui/material";
 export default function Recorder({
   AudioMessage,
