@@ -91,7 +91,13 @@ export default function sendmessageform({
         alignItems: "center",
       }}
     >
-      <Box className={EmojiStyle ? "MovedEmoji" : "Emoji"}>
+      <Box
+        sx={
+          EmojiStyle
+            ? { position: "absolute", left: 10 + "%", bottom: 1 + "%" }
+            : { marginTop: 27 + "px" }
+        }
+      >
         <Button
           disabled={Status === "recording" ? true : false}
           sx={{
@@ -179,7 +185,7 @@ export default function sendmessageform({
           });
         }}
       ></input>
-      <label for={"imgloader"}>
+      <label for={"imgloader"} style={{ cursor: "pointer" }}>
         <AddAPhotoIcon style={{ marginTop: 28 + "px" }}></AddAPhotoIcon>
       </label>
       <Recorder

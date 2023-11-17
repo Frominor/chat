@@ -1,21 +1,22 @@
 import axios from "../../axios/axios";
 import React from "react";
-import "./form.css";
+
 import { useReducer } from "react";
-import io, { Socket } from "socket.io-client";
+import io from "socket.io-client";
 import { Controller, useForm, useFormState } from "react-hook-form";
 import Chat from "../chat/chat";
 import reducer from "../../reducer";
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
+import Container from "@mui/material/Container";
 export default function form() {
   const { register, handleSubmit, control } = useForm({ mode: "onSubmit" });
   const { errors } = useFormState({
     control,
   });
-
-  const UserInfo = useSelector((state) => state.user?.UserInfo);
   const socket = io("http://localhost:5000");
+  const UserInfo = useSelector((state) => state.user?.UserInfo);
+
   const token = useSelector((state) => state.user.token);
   const [State, dispatch] = useReducer(reducer, {
     isAuth: false,
@@ -98,7 +99,7 @@ export default function form() {
       });
   };
   return (
-    <div className="Form">
+    <Box className="Form">
       {State.isAuth ? (
         <Chat
           dispatch={dispatch}
@@ -109,8 +110,19 @@ export default function form() {
           roomId={State.roomId}
         ></Chat>
       ) : (
-        <form className="Form" onSubmit={handleSubmit(onSubmit)}>
-          <div>
+        <Container
+          sx={{
+            height: 80 + "vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          component={"form"}
+          className="Form"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Box>
             <Controller
               name="roominput"
               control={control}
@@ -131,12 +143,12 @@ export default function form() {
                 ></TextField>
               )}
             ></Controller>
-          </div>
+          </Box>
           <Button variant="contained" type="submit" sx={{ marginTop: 5 }}>
             Войти
           </Button>
-        </form>
+        </Container>
       )}
-    </div>
+    </Box>
   );
 }

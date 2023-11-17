@@ -16,7 +16,7 @@ export default function PreloaderMessages({ ImageUrl, SetImgUrl }) {
       {ImageUrl.map((item) => {
         return (
           <Box
-            className="SendingMessage"
+            id="SendingMessage"
             sx={{
               position: "relative",
               width: 120 + "px",
@@ -48,11 +48,19 @@ export default function PreloaderMessages({ ImageUrl, SetImgUrl }) {
                   })
                 );
               }}
-              className="delImg"
+              id="delImg"
               src={close}
               style={{
                 width: 20 + "px",
+                position: "absolute",
                 height: 20 + "px",
+                right: -15,
+                top: 0,
+                cursor: "pointer",
+                zIndex: 20,
+                opacity: 0.8,
+                background: "white",
+                transition: "opacity 0.22s",
               }}
             ></img>
           </Box>

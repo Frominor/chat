@@ -1,10 +1,3 @@
-.Profile {
-  display: flex;
-  width: 100%;
-  height: 90vh;
-  background: #e2e8f0;
-  justify-content: space-around;
-}
 .LeftSide {
   width: 25%;
   margin: 16px 20px 0px 20px;

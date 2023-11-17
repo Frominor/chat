@@ -5,7 +5,6 @@ import { Avatar, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import PopUp from "../popup/popup";
 import axios from "../../axios/axios";
-import "./messagebox.css";
 export default function Message({
   messages,
   roomId,
@@ -108,10 +107,22 @@ export default function Message({
             }
           >
             <Box
-              className={
+              sx={
                 message.userInfo.email === State.UserInfo.email
-                  ? "YourAvatar"
-                  : "OtherAvatar"
+                  ? {
+                      position: "absolute",
+                      display: "flex",
+                      flexDirection: "column",
+                      left: 0.5 + "%",
+                      alignItems: "center",
+                    }
+                  : {
+                      position: "absolute",
+                      display: "flex",
+                      flexDirection: "column",
+                      right: 0.5 + "%",
+                      alignItems: "center",
+                    }
               }
             >
               <Avatar
@@ -130,15 +141,29 @@ export default function Message({
                 }
               />
             </Box>
-            <Box className="MessageBox">
+            <Box
+              className="MessageBox"
+              sx={{
+                position: "relative",
+                backgroundColor: "blue",
+                padding: 5 + "px",
+                borderRadius:
+                  message.userInfo.email === State.UserInfo.email
+                    ? "20px 20px 20px 0px"
+                    : "20px 20px 0px 20px",
+              }}
+            >
               <Typography
                 variant="p"
                 className="text"
-                sx={{ color: "white", fontSize: 20 }}
+                sx={{ color: "white", fontSize: 20, margin: 0 }}
               >
                 {message.message}
               </Typography>
-              <Box className="ImgMessageBox">
+              <Box
+                className="ImgMessageBox"
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              >
                 {message.Images?.map((item) => {
                   return (
                     <img
@@ -158,7 +183,14 @@ export default function Message({
                 )}
               </Box>
               <Box className="UserNameAndDelete/Edit">
-                <Typography variant="span">
+                <Typography
+                  variant="span"
+                  sx={{
+                    fontSize: 9 + "px",
+                    display: "block",
+                    color: "lightgray",
+                  }}
+                >
                   {message.userInfo.fullName}
                 </Typography>
                 {message.userInfo.email === State.UserInfo.email ? (

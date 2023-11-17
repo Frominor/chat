@@ -14,8 +14,8 @@ export default function ProfileAvatar() {
         sx={
           State.UserInfo
             ? {
-                width: 250,
-                height: 250,
+                width: 300 + "px",
+                height: 300 + "px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",

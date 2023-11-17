@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import ProfileAvatar from "../../components/avatar/avatar";
 import RightSide from "./rightside/rightside";
+import { Box } from "@mui/material";
 
 export default function profile() {
   const [Links, SetLinks] = React.useState([
@@ -17,7 +18,16 @@ export default function profile() {
     return <Navigate to={"/register"}></Navigate>;
   }
   return (
-    <div className="Profile">
+    <Box
+      className="Profile"
+      sx={{
+        display: "flex",
+        width: 100 + "%",
+        height: 90 + "vh",
+        background: "#e2e8f0",
+        justifyContent: "space-around",
+      }}
+    >
       <div className="LeftSide">
         <ProfileAvatar></ProfileAvatar>
         <div className="Links">
@@ -33,6 +43,6 @@ export default function profile() {
         </div>
       </div>
       <RightSide></RightSide>
-    </div>
+    </Box>
   );
 }
