@@ -10,13 +10,13 @@ import { Box, Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 export default function form() {
-  const { register, handleSubmit, control } = useForm({ mode: "onSubmit" });
+  const { handleSubmit, control } = useForm({ mode: "onSubmit" });
   const { errors } = useFormState({
     control,
   });
   const socket = io("http://localhost:5000");
-  const UserInfo = useSelector((State) => State.user?.UserInfo);
 
+  const UserInfo = useSelector((State) => State.user?.UserInfo);
   const [State, dispatch] = useReducer(reducer, {
     isAuth: false,
     messages: [],
@@ -87,7 +87,6 @@ export default function form() {
       })
       .then((res) => {
         onLogin(roomId, userName);
-        console.log(res.messages);
         dispatch({
           type: "ROOM:JOINED",
           payload: res.data.messages,

@@ -33,7 +33,7 @@ export default function RightSide() {
             return (
               <Typography
                 sx={{
-                  padding: 10 + "px",
+                  padding: 11 + "px",
                   color: "black",
                   borderBottom: "1px solid black",
                   textAlign: "left",
@@ -56,7 +56,7 @@ export default function RightSide() {
               padding: "10px 10px 10px 0px",
               textAlign: "left",
               borderBottom: "1px solid #949494",
-              margin: "10px 0px 20px 0px",
+              margin: "11px 0px 18px 0px",
             }}
           >
             {State.UserInfo.fullName}

@@ -27,7 +27,6 @@ export default function sendmessageform({
   const [AudioMessage, SetAudioMessage] = React.useState(null);
   const [EmojiStyle, SetEmojiStyle] = React.useState(false);
   const [Status, SetStatus] = React.useState(null);
-  const [ShowPicker, SetShowPicker] = React.useState(false);
   const onEmojiClick = (event, emojiObject) => {
     SetValue((prev) => prev + emojiObject.emoji);
   };
